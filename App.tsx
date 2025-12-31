@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CLASSES_DATA, GRADE_COLORS } from './constants';
 import { ViewState, ClassData } from './types';
@@ -57,9 +56,9 @@ const App: React.FC = () => {
           </button>
           
           <nav className="hidden lg:flex space-x-8">
-            <button onClick={goHome} className="text-sm font-semibold text-slate-600 hover:text-indigo-600">Home</button>
-            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600">All Formulas</button>
-            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600">Resources</button>
+            <button onClick={goHome} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Home</button>
+            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">All Formulas</button>
+            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Resources</button>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -138,7 +137,7 @@ const App: React.FC = () => {
                 <h3 className="mb-6 border-b-2 border-slate-200 pb-2 text-2xl font-bold text-slate-800">
                   {topic.name}
                 </h3>
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
                   {topic.formulas.map((formula) => (
                     <FormulaItem 
                       key={formula.id} 
@@ -155,11 +154,13 @@ const App: React.FC = () => {
 
       <footer className="mt-20 border-t border-slate-200 bg-white py-12">
         <div className="mx-auto max-w-7xl px-4 text-center text-slate-500 sm:px-6">
-          <p className="font-medium">&copy; 2024 MathMaster Hub by SR KADHIR NELAVAN.</p>
-          <div className="mt-4 flex justify-center gap-6">
-            <button className="hover:text-indigo-600">Privacy Policy</button>
-            <button className="hover:text-indigo-600">Terms of Service</button>
-            <button className="hover:text-indigo-600">Contact</button>
+          <p className="font-medium text-slate-900">MathMaster Hub</p>
+          <p className="mt-1">Handcrafted with care for students around the world.</p>
+          <p className="mt-4 font-bold text-slate-700">&copy; 2024 MathMaster Hub by SR KADHIR NELAVAN.</p>
+          <div className="mt-6 flex justify-center gap-6 text-sm">
+            <button className="hover:text-indigo-600 transition-colors">Privacy Policy</button>
+            <button className="hover:text-indigo-600 transition-colors">Terms of Service</button>
+            <button className="hover:text-indigo-600 transition-colors">Contact Creator</button>
           </div>
         </div>
       </footer>
