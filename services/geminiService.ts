@@ -2,13 +2,24 @@
 import { GoogleGenAI } from "@google/genai";
 
 export class GeminiService {
-  private ai: GoogleGenAI;
+  private ai: GoogleGenAI | null = null;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+    try {
+      const apiKey = process.env.API_KEY;
+      if (apiKey) {
+        this.ai = new GoogleGenAI({ apiKey });
+      } else {
+        console.warn("Gemini API key not found in process.env");
+      }
+    } catch (e) {
+      console.error("Failed to initialize GoogleGenAI:", e);
+    }
   }
 
   async explainFormula(formulaTitle: string, expression: string, grade: number) {
+    if (!this.ai) return "AI services are currently unavailable. Please check API configuration.";
+    
     try {
       const response = await this.ai.models.generateContent({
         model: 'gemini-3-flash-preview',
@@ -25,6 +36,8 @@ export class GeminiService {
   }
 
   async askMathBuddy(query: string, grade: number) {
+    if (!this.ai) return "I'm taking a break! (API key missing or invalid). But I'm still here to help you navigate the formulas manually!";
+    
     try {
       const response = await this.ai.models.generateContent({
         model: 'gemini-3-flash-preview',

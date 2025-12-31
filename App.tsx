@@ -7,6 +7,7 @@ import FormulaItem from './components/FormulaItem';
 import LoginScreen from './components/LoginScreen';
 import SettingsModal from './components/SettingsModal';
 import CreatorModal from './components/CreatorModal';
+import MathBuddy from './components/MathBuddy';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>(ViewState.LOGIN);
@@ -57,9 +58,9 @@ const App: React.FC = () => {
           </button>
           
           <nav className="hidden lg:flex space-x-8">
-            <button onClick={goHome} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Home</button>
-            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Formula List</button>
-            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">Quick Help</button>
+            <button onClick={goHome} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-widest">Home</button>
+            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-widest">Formula Hub</button>
+            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-widest">Library</button>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -83,7 +84,7 @@ const App: React.FC = () => {
             
             <button 
               onClick={handleSignOut}
-              className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-bold text-white transition-all hover:bg-slate-800 shadow-lg"
+              className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-bold text-white transition-all hover:bg-slate-800 shadow-lg shadow-slate-200"
             >
               Sign Out
             </button>
@@ -96,12 +97,12 @@ const App: React.FC = () => {
           <div className="animate-fadeIn">
             <div className="mb-16 text-center">
               <h1 className="mb-4 text-5xl font-black tracking-tight text-slate-900 sm:text-7xl">
-                Master All Math <br />
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent italic">Simplified.</span>
+                The Complete <br />
+                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent italic">Formula Hub.</span>
               </h1>
-              <p className="mx-auto max-w-2xl text-lg text-slate-500 font-medium">
-                The most comprehensive formula repository for Classes 7 to 12. 
-                Sleek, fast, and interactive.
+              <p className="mx-auto max-w-2xl text-lg text-slate-500 font-medium leading-relaxed">
+                Everything from Class 7 integers to Class 12 calculus. 
+                Each class now features 15+ high-quality formulas tailored to the standard curriculum.
               </p>
             </div>
 
@@ -128,8 +129,8 @@ const App: React.FC = () => {
               BACK TO GRADES
             </button>
 
-            <div className={`mb-12 rounded-[2rem] p-10 text-white shadow-2xl bg-gradient-to-r ${selectedClass ? GRADE_COLORS[selectedClass.grade] : ''} relative overflow-hidden`}>
-               <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+            <div className={`mb-12 rounded-[2.5rem] p-12 text-white shadow-2xl bg-gradient-to-r ${selectedClass ? GRADE_COLORS[selectedClass.grade] : ''} relative overflow-hidden`}>
+               <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none scale-150">
                  <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"/>
                     <line x1="14.31" y1="8" x2="20.05" y2="17.94"/>
@@ -141,20 +142,22 @@ const App: React.FC = () => {
                  </svg>
                </div>
                <div className="relative z-10">
-                <h2 className="text-5xl font-black">{selectedClass?.label}</h2>
-                <p className="mt-3 text-xl text-white/80 font-medium">Core Syllabus & Advanced Formula Library</p>
+                <h2 className="text-6xl font-black tracking-tighter">{selectedClass?.label}</h2>
+                <p className="mt-4 text-2xl text-white/90 font-light max-w-xl">
+                  Deep dive into {selectedClass?.topics.length} specialized math domains with comprehensive formula sheets.
+                </p>
               </div>
             </div>
 
             {selectedClass?.topics.map((topic, tIdx) => (
-              <div key={tIdx} className="mb-16">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className={`h-12 w-2 rounded-full bg-gradient-to-b ${GRADE_COLORS[selectedClass.grade]}`}></div>
-                  <h3 className="text-3xl font-black text-slate-800 uppercase tracking-tight">
+              <div key={tIdx} className="mb-20">
+                <div className="flex items-center gap-5 mb-10">
+                  <div className={`h-14 w-2.5 rounded-full bg-gradient-to-b ${GRADE_COLORS[selectedClass.grade]} shadow-lg`}></div>
+                  <h3 className="text-4xl font-black text-slate-800 uppercase tracking-tighter">
                     {topic.name}
                   </h3>
                 </div>
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-8 md:grid-cols-2">
                   {topic.formulas.map((formula) => (
                     <FormulaItem 
                       key={formula.id} 
@@ -165,34 +168,45 @@ const App: React.FC = () => {
                 </div>
               </div>
             ))}
+            
+            {/* Math AI Buddy integration */}
+            {selectedClass && <MathBuddy grade={selectedClass.grade} />}
           </div>
         )}
       </main>
 
-      <footer className="mt-20 border-t border-slate-200 bg-white py-16">
+      <footer className="mt-32 border-t border-slate-200 bg-white py-24">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
-          <div className="flex justify-center mb-8">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-xl">
-              <span className="text-xl font-bold">Σ</span>
+          <div className="flex justify-center mb-10">
+            <div className="flex h-16 w-16 items-center justify-center rounded-[1.25rem] bg-slate-900 text-white shadow-2xl hover:scale-110 transition-transform cursor-pointer">
+              <span className="text-2xl font-bold">Σ</span>
             </div>
           </div>
-          <p className="text-xl font-black text-slate-900">MathMaster Formula Hub</p>
-          <p className="mt-2 text-slate-400 font-medium">Empowering the next generation of engineers and scientists.</p>
-          <div className="mt-8 flex justify-center gap-8 text-sm font-bold text-slate-400 uppercase tracking-widest">
+          <p className="text-2xl font-black text-slate-900 tracking-tight">MathMaster Formula Hub</p>
+          <p className="mt-3 text-slate-400 font-medium max-w-md mx-auto leading-relaxed">
+            The world's most elegant formula repository for school students. Built for performance and clarity.
+          </p>
+          <div className="mt-12 flex justify-center gap-10 text-xs font-black text-slate-400 uppercase tracking-widest">
             <button className="hover:text-indigo-600 transition-colors">Privacy</button>
             <button className="hover:text-indigo-600 transition-colors">Terms</button>
-            <button className="hover:text-indigo-600 transition-colors">Support</button>
+            <button className="hover:text-indigo-600 transition-colors">Global Support</button>
           </div>
-          <p className="mt-12 text-xs font-bold text-slate-300 tracking-tighter">&copy; 2024 MATHMASTER HUB BY SR KADHIR NELAVAN.</p>
+          <p className="mt-20 text-[10px] font-black text-slate-300 tracking-[0.2em] uppercase">&copy; 2024 MATHMASTER HUB &bull; SR KADHIR NELAVAN</p>
         </div>
       </footer>
 
       <style>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
+          from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-fadeIn { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(40px) scale(0.95); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-slideUp { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       `}</style>
     </div>
   );
