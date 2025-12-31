@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 export class GeminiService {
@@ -6,11 +5,11 @@ export class GeminiService {
 
   constructor() {
     try {
-      const apiKey = process.env.API_KEY;
+      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
       if (apiKey) {
         this.ai = new GoogleGenAI({ apiKey });
       } else {
-        console.warn("Gemini API key not found in process.env");
+        console.warn("Gemini API key not found in process.env. AI features will be disabled.");
       }
     } catch (e) {
       console.error("Failed to initialize GoogleGenAI:", e);
@@ -36,7 +35,7 @@ export class GeminiService {
   }
 
   async askMathBuddy(query: string, grade: number) {
-    if (!this.ai) return "I'm taking a break! (API key missing or invalid). But I'm still here to help you navigate the formulas manually!";
+    if (!this.ai) return "I'm currently in manual mode! (API key missing). But I can still show you all the formulas for your class if you click back to the grades!";
     
     try {
       const response = await this.ai.models.generateContent({
