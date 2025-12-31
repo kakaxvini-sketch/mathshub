@@ -25,16 +25,6 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
         </div>
         
         <div className="p-6 space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h4 className="font-semibold text-slate-800">AI Explanations</h4>
-              <p className="text-xs text-slate-500">Enable Gemini-powered formula help</p>
-            </div>
-            <div className="h-6 w-11 rounded-full bg-indigo-600 relative">
-              <div className="absolute right-1 top-1 h-4 w-4 rounded-full bg-white"></div>
-            </div>
-          </div>
-
           <div className="flex items-center justify-between opacity-50 cursor-not-allowed">
             <div>
               <h4 className="font-semibold text-slate-800">Dark Mode</h4>

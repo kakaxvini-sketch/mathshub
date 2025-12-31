@@ -4,7 +4,6 @@ import { CLASSES_DATA, GRADE_COLORS } from './constants';
 import { ViewState, ClassData } from './types';
 import GradeCard from './components/GradeCard';
 import FormulaItem from './components/FormulaItem';
-import MathBuddy from './components/MathBuddy';
 import LoginScreen from './components/LoginScreen';
 import SettingsModal from './components/SettingsModal';
 import CreatorModal from './components/CreatorModal';
@@ -57,14 +56,13 @@ const App: React.FC = () => {
             <span className="tracking-tight hidden sm:inline">MathMaster</span>
           </button>
           
-          <nav className="hidden space-x-8 lg:flex">
+          <nav className="hidden lg:flex space-x-8">
             <button onClick={goHome} className="text-sm font-semibold text-slate-600 hover:text-indigo-600">Home</button>
-            <a href="#" className="text-sm font-semibold text-slate-600 hover:text-indigo-600">All Formulas</a>
-            <a href="#" className="text-sm font-semibold text-slate-600 hover:text-indigo-600">Resources</a>
+            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600">All Formulas</button>
+            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600">Resources</button>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            {/* Settings Button */}
             <button 
               onClick={() => setIsSettingsOpen(true)}
               className="p-2 text-slate-400 hover:text-indigo-600 transition-colors rounded-xl hover:bg-slate-100"
@@ -76,17 +74,16 @@ const App: React.FC = () => {
               </svg>
             </button>
 
-            {/* Creator Button */}
             <button 
               onClick={() => setIsCreatorOpen(true)}
-              className="hidden sm:flex items-center gap-2 rounded-xl bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-600 transition-all hover:bg-indigo-100 active:scale-95 border border-indigo-200"
+              className="hidden sm:flex items-center gap-2 rounded-xl bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-600 transition-all hover:bg-indigo-100 border border-indigo-200"
             >
               Creator
             </button>
             
             <button 
               onClick={handleSignOut}
-              className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-bold text-white transition-all hover:bg-slate-800 active:scale-95 shadow-lg shadow-slate-200"
+              className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-bold text-white transition-all hover:bg-slate-800 shadow-lg"
             >
               Sign Out
             </button>
@@ -103,8 +100,8 @@ const App: React.FC = () => {
                 <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">effortlessly.</span>
               </h1>
               <p className="mx-auto max-w-2xl text-lg text-slate-600">
-                Interactive formula library for classes 7 to 12. From basic algebra to advanced calculus, 
-                we've got you covered with AI-powered explanations.
+                A massive, interactive formula library for classes 7 to 12. 
+                Find every theorem, identity, and derivative you need in one place.
               </p>
             </div>
 
@@ -121,7 +118,6 @@ const App: React.FC = () => {
           </section>
         ) : (
           <section className="animate-fadeIn">
-            {/* Breadcrumb / Back button */}
             <button 
               onClick={goHome}
               className="mb-8 flex items-center gap-2 font-semibold text-slate-500 transition-colors hover:text-indigo-600"
@@ -134,7 +130,7 @@ const App: React.FC = () => {
 
             <div className={`mb-12 rounded-3xl p-8 text-white shadow-xl bg-gradient-to-r ${selectedClass ? GRADE_COLORS[selectedClass.grade] : ''}`}>
               <h2 className="text-4xl font-bold">{selectedClass?.label} Mathematics</h2>
-              <p className="mt-2 text-lg text-white/90">Curated collection of essential formulas and theorems.</p>
+              <p className="mt-2 text-lg text-white/90">Curated collection of essential formulas for your curriculum.</p>
             </div>
 
             {selectedClass?.topics.map((topic, tIdx) => (
@@ -153,20 +149,17 @@ const App: React.FC = () => {
                 </div>
               </div>
             ))}
-            
-            <MathBuddy grade={selectedClass?.grade || 7} />
           </section>
         )}
       </main>
 
-      {/* Footer */}
       <footer className="mt-20 border-t border-slate-200 bg-white py-12">
         <div className="mx-auto max-w-7xl px-4 text-center text-slate-500 sm:px-6">
           <p className="font-medium">&copy; 2024 MathMaster Hub by SR KADHIR NELAVAN.</p>
           <div className="mt-4 flex justify-center gap-6">
-            <a href="#" className="hover:text-indigo-600">Privacy Policy</a>
-            <a href="#" className="hover:text-indigo-600">Terms of Service</a>
-            <a href="#" className="hover:text-indigo-600">Contact</a>
+            <button className="hover:text-indigo-600">Privacy Policy</button>
+            <button className="hover:text-indigo-600">Terms of Service</button>
+            <button className="hover:text-indigo-600">Contact</button>
           </div>
         </div>
       </footer>
@@ -180,12 +173,8 @@ const App: React.FC = () => {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out forwards;
-        }
-        .animate-slideUp {
-          animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
+        .animate-slideUp { animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       `}</style>
     </div>
   );

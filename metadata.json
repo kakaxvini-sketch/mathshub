@@ -1,6 +1,6 @@
 {
-  "name": "Copy of MathMaster Formula Hub",
-  "description": "An interactive math formula repository for students from classes 7 to 12, featuring AI-powered explanations and a sleek, modern UI.",
+  "name": "MathMaster Formula Hub",
+  "description": "An interactive math formula repository for students from classes 7 to 12, featuring detailed explanations and a sleek, modern UI.",
   "requestFramePermissions": [
     "camera"
   ]
