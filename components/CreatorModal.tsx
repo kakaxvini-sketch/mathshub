@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface CreatorModalProps {
@@ -18,17 +17,17 @@ const CreatorModal: React.FC<CreatorModalProps> = ({ isOpen, onClose }) => {
             <span className="text-3xl font-black text-indigo-600">SK</span>
           </div>
           <h3 className="mt-4 text-2xl font-black text-slate-900 uppercase">SR KADHIR NELAVAN</h3>
-          <p className="text-indigo-600 font-bold text-sm tracking-widest uppercase mt-2 px-4">
-            AND THE CREATOR OF GEOCOMMAND APP
+          <p className="text-indigo-600 font-bold text-xs tracking-[0.2em] uppercase mt-3 px-4 border-y border-indigo-50 py-2">
+            &nbsp;
           </p>
           <div className="mt-6 flex justify-center gap-4">
              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex-1">
-                <p className="text-xs text-slate-400 uppercase font-bold">Role</p>
+                <p className="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Role</p>
                 <p className="text-sm font-bold text-slate-700">Lead Creator</p>
              </div>
              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex-1">
-                <p className="text-xs text-slate-400 uppercase font-bold">Project</p>
-                <p className="text-sm font-bold text-slate-700">GeoCommand</p>
+                <p className="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Mission</p>
+                <p className="text-sm font-bold text-slate-700">Student Success</p>
              </div>
           </div>
           <button 
