@@ -1,7 +1,6 @@
-
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { CLASSES_DATA, GRADE_COLORS } from './constants';
-import { ViewState, ClassData } from './types';
+import { ViewState, ClassData, AppSettings } from './types';
 import GradeCard from './components/GradeCard';
 import FormulaItem from './components/FormulaItem';
 import LoginScreen from './components/LoginScreen';
@@ -14,6 +13,12 @@ const App: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState<ClassData | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isCreatorOpen, setIsCreatorOpen] = useState(false);
+  
+  // Settings State
+  const [settings, setSettings] = useState<AppSettings>({
+    darkMode: false,
+    advancedMode: true
+  });
 
   const handleLogin = () => {
     setView(ViewState.HOME);
@@ -35,56 +40,74 @@ const App: React.FC = () => {
     setSelectedClass(null);
   };
 
+  // Filter formulas based on Advanced Mode setting
+  const filteredTopics = useMemo(() => {
+    if (!selectedClass) return [];
+    if (settings.advancedMode) return selectedClass.topics;
+
+    return selectedClass.topics.map(topic => ({
+      ...topic,
+      formulas: topic.formulas.filter(f => !f.isAdvanced)
+    })).filter(topic => topic.formulas.length > 0);
+  }, [selectedClass, settings.advancedMode]);
+
   if (view === ViewState.LOGIN) {
     return <LoginScreen onLogin={handleLogin} />;
   }
 
+  const themeClass = settings.darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900';
+
   return (
-    <div className="min-h-screen bg-slate-50 font-sans selection:bg-indigo-100">
-      <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+    <div className={`min-h-screen font-sans selection:bg-indigo-100 transition-colors duration-300 ${themeClass}`}>
+      <SettingsModal 
+        isOpen={isSettingsOpen} 
+        onClose={() => setIsSettingsOpen(false)} 
+        settings={settings}
+        onUpdate={setSettings}
+      />
       <CreatorModal isOpen={isCreatorOpen} onClose={() => setIsCreatorOpen(false)} />
 
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+      <header className={`sticky top-0 z-40 border-b backdrop-blur-md transition-colors ${settings.darkMode ? 'border-slate-800 bg-slate-950/80' : 'border-slate-200 bg-white/80'}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-4 sm:px-6">
           <button 
             onClick={goHome}
-            className="flex items-center gap-2 text-xl sm:text-2xl font-extrabold text-slate-900 transition-opacity hover:opacity-80"
+            className={`flex items-center gap-2 text-xl sm:text-2xl font-extrabold transition-opacity hover:opacity-80 ${settings.darkMode ? 'text-white' : 'text-slate-900'}`}
           >
-            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-100">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-500/20">
               <span className="text-lg sm:text-xl font-bold">Σ</span>
             </div>
             <span className="tracking-tight hidden xs:inline">MathMaster</span>
           </button>
           
           <nav className="hidden lg:flex space-x-8">
-            <button onClick={goHome} className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-widest">Home</button>
-            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-widest">Formula Hub</button>
-            <button className="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors uppercase tracking-widest">Library</button>
+            <button onClick={goHome} className={`text-sm font-semibold transition-colors uppercase tracking-widest ${settings.darkMode ? 'text-slate-400 hover:text-indigo-400' : 'text-slate-600 hover:text-indigo-600'}`}>Home</button>
+            <button className={`text-sm font-semibold transition-colors uppercase tracking-widest ${settings.darkMode ? 'text-slate-400 hover:text-indigo-400' : 'text-slate-600 hover:text-indigo-600'}`}>Formula Hub</button>
+            <button className={`text-sm font-semibold transition-colors uppercase tracking-widest ${settings.darkMode ? 'text-slate-400 hover:text-indigo-400' : 'text-slate-600 hover:text-indigo-600'}`}>Library</button>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
             <button 
               onClick={() => setIsSettingsOpen(true)}
-              className="p-1.5 sm:p-2 text-slate-400 hover:text-indigo-600 transition-colors rounded-xl hover:bg-slate-100"
+              className={`p-1.5 sm:p-2 transition-colors rounded-xl ${settings.darkMode ? 'text-slate-500 hover:text-indigo-400 hover:bg-slate-900' : 'text-slate-400 hover:text-indigo-600 hover:bg-slate-100'}`}
               title="Settings"
             >
               <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </button>
 
             <button 
               onClick={() => setIsCreatorOpen(true)}
-              className="flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl bg-indigo-50 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold text-indigo-600 transition-all hover:bg-indigo-100 border border-indigo-200"
+              className={`flex items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold transition-all ${settings.darkMode ? 'bg-indigo-900/30 text-indigo-400 border-indigo-900/50 hover:bg-indigo-900/50' : 'bg-indigo-50 text-indigo-600 border-indigo-200 hover:bg-indigo-100'} border`}
             >
               Creator
             </button>
             
             <button 
               onClick={handleSignOut}
-              className="rounded-lg sm:rounded-xl bg-slate-900 px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-bold text-white transition-all hover:bg-slate-800 shadow-lg shadow-slate-200 whitespace-nowrap"
+              className={`rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-bold transition-all shadow-lg whitespace-nowrap ${settings.darkMode ? 'bg-white text-slate-900 hover:bg-slate-200' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-slate-200'}`}
             >
               Sign Out
             </button>
@@ -96,11 +119,11 @@ const App: React.FC = () => {
         {view === ViewState.HOME ? (
           <div className="animate-fadeIn">
             <div className="mb-16 text-center">
-              <h1 className="mb-4 text-4xl font-black tracking-tight text-slate-900 sm:text-7xl">
+              <h1 className={`mb-4 text-4xl font-black tracking-tight sm:text-7xl ${settings.darkMode ? 'text-white' : 'text-slate-900'}`}>
                 The Complete <br />
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent italic">Formula Hub.</span>
+                <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent italic">Formula Hub.</span>
               </h1>
-              <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-500 font-medium leading-relaxed">
+              <p className={`mx-auto max-w-2xl text-base sm:text-lg font-medium leading-relaxed ${settings.darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
                 A massive central repository covering Class 7 to Class 12. 
                 Now featuring comprehensive formula sheets for all major chapters.
               </p>
@@ -121,7 +144,7 @@ const App: React.FC = () => {
           <div className="animate-fadeIn">
             <button 
               onClick={goHome}
-              className="group mb-8 flex items-center gap-2 font-bold text-slate-400 transition-colors hover:text-indigo-600"
+              className={`group mb-8 flex items-center gap-2 font-bold transition-colors ${settings.darkMode ? 'text-slate-500 hover:text-indigo-400' : 'text-slate-400 hover:text-indigo-600'}`}
             >
               <svg className="h-5 w-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -144,16 +167,16 @@ const App: React.FC = () => {
                <div className="relative z-10">
                 <h2 className="text-4xl sm:text-6xl font-black tracking-tighter">{selectedClass?.label}</h2>
                 <p className="mt-4 text-lg sm:text-2xl text-white/90 font-light max-w-xl">
-                  {selectedClass?.topics.length} specialized chapters unlocked. Explore the core curriculum theorems and identities.
+                  {filteredTopics.length} specialized chapters unlocked. Explore the core curriculum theorems and identities.
                 </p>
               </div>
             </div>
 
-            {selectedClass?.topics.map((topic, tIdx) => (
+            {filteredTopics.map((topic, tIdx) => (
               <div key={tIdx} className="mb-16 sm:mb-20">
-                <div className="flex items-center gap-3 sm:gap-5 mb-8 sm:mb-10">
-                  <div className={`h-10 sm:h-14 w-2 sm:w-2.5 rounded-full bg-gradient-to-b ${GRADE_COLORS[selectedClass.grade]} shadow-lg`}></div>
-                  <h3 className="text-2xl sm:text-4xl font-black text-slate-800 uppercase tracking-tighter">
+                <div className="flex items-center gap-3 sm:gap-5 mb-8 sm:mb-10 border-b border-slate-200 dark:border-slate-800 pb-4">
+                  <div className={`h-10 sm:h-14 w-2 sm:w-2.5 rounded-full bg-gradient-to-b ${GRADE_COLORS[selectedClass!.grade]} shadow-lg`}></div>
+                  <h3 className={`text-2xl sm:text-4xl font-black uppercase tracking-tighter ${settings.darkMode ? 'text-slate-100' : 'text-slate-800'}`}>
                     {topic.name}
                   </h3>
                 </div>
@@ -162,7 +185,8 @@ const App: React.FC = () => {
                     <FormulaItem 
                       key={formula.id} 
                       formula={formula} 
-                      grade={selectedClass.grade}
+                      grade={selectedClass!.grade}
+                      isDark={settings.darkMode}
                     />
                   ))}
                 </div>
@@ -170,48 +194,30 @@ const App: React.FC = () => {
             ))}
             
             {/* Math AI Buddy integration */}
-            {selectedClass && <MathBuddy grade={selectedClass.grade} />}
+            {selectedClass && <MathBuddy grade={selectedClass.grade} isDark={settings.darkMode} />}
           </div>
         )}
       </main>
 
-      <footer className="mt-32 border-t border-slate-200 bg-white py-16 sm:py-24">
+      <footer className={`mt-32 border-t py-16 sm:py-24 transition-colors ${settings.darkMode ? 'border-slate-800 bg-slate-950' : 'border-slate-200 bg-white'}`}>
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
           <div className="flex justify-center mb-8 sm:mb-10">
-            <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-[1.25rem] bg-slate-900 text-white shadow-2xl hover:scale-110 transition-transform cursor-pointer">
+            <div className={`flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-[1.25rem] transition-all hover:scale-110 cursor-pointer ${settings.darkMode ? 'bg-white text-slate-900 shadow-white/5' : 'bg-slate-900 text-white shadow-2xl'}`}>
               <span className="text-xl sm:text-2xl font-bold">Σ</span>
             </div>
           </div>
-          <p className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">MathMaster Formula Hub</p>
-          <p className="mt-3 text-sm sm:text-base text-slate-400 font-medium max-w-md mx-auto leading-relaxed px-4">
+          <p className={`text-xl sm:text-2xl font-black tracking-tight ${settings.darkMode ? 'text-white' : 'text-slate-900'}`}>MathMaster Formula Hub</p>
+          <p className={`mt-3 text-sm sm:text-base font-medium max-w-md mx-auto leading-relaxed px-4 ${settings.darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
             The world's most elegant formula repository for school students. Built for performance and clarity.
           </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-6 sm:gap-10 text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest">
-            <button className="hover:text-indigo-600 transition-colors">Privacy</button>
-            <button className="hover:text-indigo-600 transition-colors">Terms</button>
-            <button className="hover:text-indigo-600 transition-colors">Global Support</button>
+          <div className={`mt-10 flex flex-wrap justify-center gap-6 sm:gap-10 text-[10px] sm:text-xs font-black uppercase tracking-widest ${settings.darkMode ? 'text-slate-600' : 'text-slate-400'}`}>
+            <button className="hover:text-indigo-400 transition-colors">Privacy</button>
+            <button className="hover:text-indigo-400 transition-colors">Terms</button>
+            <button className="hover:text-indigo-400 transition-colors">Global Support</button>
           </div>
-          <p className="mt-16 sm:mt-20 text-[8px] sm:text-[10px] font-black text-slate-300 tracking-[0.2em] uppercase">&copy; 2024 MATHMASTER HUB &bull; SR KADHIR NELAVAN</p>
+          <p className={`mt-16 sm:mt-20 text-[8px] sm:text-[10px] font-black tracking-[0.2em] uppercase ${settings.darkMode ? 'text-slate-700' : 'text-slate-300'}`}>&copy; 2024 MATHMASTER HUB &bull; SR KADHIR NELAVAN</p>
         </div>
       </footer>
-
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(40px) scale(0.95); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .animate-slideUp { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-        @media (max-width: 400px) {
-          .xs\\:inline { display: inline; }
-        }
-      `}</style>
     </div>
   );
 };

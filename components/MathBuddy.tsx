@@ -4,9 +4,10 @@ import { GeminiService } from '../services/geminiService';
 
 interface MathBuddyProps {
   grade: number;
+  isDark?: boolean;
 }
 
-const MathBuddy: React.FC<MathBuddyProps> = ({ grade }) => {
+const MathBuddy: React.FC<MathBuddyProps> = ({ grade, isDark }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [response, setResponse] = useState<string | null>(null);
@@ -26,18 +27,18 @@ const MathBuddy: React.FC<MathBuddyProps> = ({ grade }) => {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen && (
-        <div className="mb-4 w-80 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl animate-slideUp">
+        <div className={`mb-4 w-80 overflow-hidden rounded-2xl border shadow-2xl animate-slideUp transition-colors ${isDark ? 'bg-slate-900 border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-900'}`}>
           <div className="bg-indigo-600 p-4 text-white">
             <h3 className="font-bold">Math AI Buddy (Class {grade})</h3>
             <p className="text-xs text-white/80">Ask me anything about math!</p>
           </div>
           <div className="max-h-96 overflow-y-auto p-4">
             {response ? (
-              <div className="mb-4 rounded-lg bg-slate-50 p-3 text-sm text-slate-700 whitespace-pre-wrap border border-slate-200">
+              <div className={`mb-4 rounded-lg p-3 text-sm whitespace-pre-wrap border transition-colors ${isDark ? 'bg-slate-950 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'}`}>
                 {response}
               </div>
             ) : (
-              <p className="mb-4 text-center text-sm text-slate-400">Type a question to start chatting...</p>
+              <p className={`mb-4 text-center text-sm ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Type a question to start chatting...</p>
             )}
             {loading && (
               <div className="flex justify-center py-4">
@@ -45,14 +46,14 @@ const MathBuddy: React.FC<MathBuddyProps> = ({ grade }) => {
               </div>
             )}
           </div>
-          <form onSubmit={handleAsk} className="border-t p-4">
+          <form onSubmit={handleAsk} className={`border-t p-4 ${isDark ? 'border-slate-800' : 'border-slate-100'}`}>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="How to solve..."
-                className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                className={`flex-1 rounded-lg border px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors ${isDark ? 'bg-slate-950 border-slate-800 text-white' : 'bg-white border-slate-200'}`}
               />
               <button
                 type="submit"
@@ -68,7 +69,7 @@ const MathBuddy: React.FC<MathBuddyProps> = ({ grade }) => {
                 <button 
                   type="button"
                   onClick={() => { setResponse(null); setQuery(''); }}
-                  className="mt-2 text-xs text-indigo-600 font-medium hover:underline"
+                  className="mt-2 text-xs text-indigo-400 font-medium hover:underline"
                 >
                   Clear chat
                 </button>
@@ -78,7 +79,7 @@ const MathBuddy: React.FC<MathBuddyProps> = ({ grade }) => {
       )}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg transition-transform hover:scale-110 active:scale-95"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 text-white shadow-lg transition-transform hover:scale-110 active:scale-95 shadow-indigo-500/30"
       >
         {isOpen ? (
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

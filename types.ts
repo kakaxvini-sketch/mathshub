@@ -6,15 +6,23 @@ export interface Formula {
   description: string;
   explanation: string;
   category: string;
+  isAdvanced?: boolean;
+}
+
+export interface Topic {
+  name: string;
+  formulas: Formula[];
 }
 
 export interface ClassData {
   grade: number;
   label: string;
-  topics: {
-    name: string;
-    formulas: Formula[];
-  }[];
+  topics: Topic[];
+}
+
+export interface AppSettings {
+  darkMode: boolean;
+  advancedMode: boolean;
 }
 
 export enum ViewState {
