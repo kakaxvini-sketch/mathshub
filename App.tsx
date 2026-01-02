@@ -101,8 +101,8 @@ const App: React.FC = () => {
                 <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent italic">Formula Hub.</span>
               </h1>
               <p className="mx-auto max-w-2xl text-lg text-slate-500 font-medium leading-relaxed">
-                Everything from Class 7 integers to Class 12 calculus. 
-                Each class now features 15+ high-quality formulas tailored to the standard curriculum.
+                A massive central repository covering Class 7 to Class 12. 
+                Now featuring comprehensive formula sheets for all major chapters.
               </p>
             </div>
 
@@ -126,7 +126,7 @@ const App: React.FC = () => {
               <svg className="h-5 w-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              BACK TO GRADES
+              BACK TO HUB
             </button>
 
             <div className={`mb-12 rounded-[2.5rem] p-12 text-white shadow-2xl bg-gradient-to-r ${selectedClass ? GRADE_COLORS[selectedClass.grade] : ''} relative overflow-hidden`}>
@@ -144,7 +144,7 @@ const App: React.FC = () => {
                <div className="relative z-10">
                 <h2 className="text-6xl font-black tracking-tighter">{selectedClass?.label}</h2>
                 <p className="mt-4 text-2xl text-white/90 font-light max-w-xl">
-                  Deep dive into {selectedClass?.topics.length} specialized math domains with comprehensive formula sheets.
+                  {selectedClass?.topics.length} specialized chapters unlocked. Explore the core curriculum theorems and identities.
                 </p>
               </div>
             </div>

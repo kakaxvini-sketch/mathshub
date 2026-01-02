@@ -18,7 +18,7 @@ const CreatorModal: React.FC<CreatorModalProps> = ({ isOpen, onClose }) => {
           </div>
           <h3 className="mt-4 text-2xl font-black text-slate-900 uppercase">SR KADHIR NELAVAN</h3>
           <p className="text-indigo-600 font-bold text-xs tracking-[0.2em] uppercase mt-3 px-4 border-y border-indigo-50 py-2">
-            &nbsp;
+            OF TI SCHOOL
           </p>
           <div className="mt-6 flex justify-center gap-4">
              <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100 flex-1">

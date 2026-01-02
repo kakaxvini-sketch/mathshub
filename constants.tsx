@@ -6,29 +6,27 @@ export const CLASSES_DATA: ClassData[] = [
     label: "Class 7",
     topics: [
       {
-        name: "Number System & Integers",
+        name: "Integers & Operations",
         formulas: [
-          { id: "7-1", title: "Commutative Property (Add)", expression: "a + b = b + a", description: "Order doesn't matter in addition.", explanation: "The sum remains the same regardless of the order of integers.", category: "Integers" },
-          { id: "7-2", title: "Commutative Property (Mul)", expression: "a × b = b × a", description: "Order doesn't matter in multiplication.", explanation: "Multiplying numbers in any order gives the same product.", category: "Integers" },
-          { id: "7-3", title: "Associative Property", expression: "(a+b)+c = a+(b+c)", description: "Grouping doesn't change sum.", explanation: "Grouping of numbers does not affect their sum.", category: "Integers" },
-          { id: "7-4", title: "Distributive Property", expression: "a(b+c) = ab + ac", description: "Multiplication over addition.", explanation: "Multiply a sum by a number by multiplying each addend separately.", category: "Algebra" },
-          { id: "7-5", title: "Additive Identity", expression: "a + 0 = a", description: "Zero identity.", explanation: "Zero is the additive identity for integers.", category: "Integers" },
-          { id: "7-6", title: "Multiplicative Identity", expression: "a × 1 = a", description: "One identity.", explanation: "One is the multiplicative identity for integers.", category: "Integers" },
-          { id: "7-7", title: "Additive Inverse", expression: "a + (-a) = 0", description: "Inverse property.", explanation: "Every integer has an opposite that sums to zero.", category: "Integers" },
-          { id: "7-8", title: "Product of Fractions", expression: "(a/b) × (c/d) = (ac)/(bd)", description: "Direct multiplication.", explanation: "Multiply numerators and denominators separately.", category: "Fractions" },
-          { id: "7-9", title: "Fraction Division", expression: "(a/b) ÷ (c/d) = (ad)/(bc)", description: "Reciprocal multiplication.", explanation: "Multiply by the reciprocal of the divisor.", category: "Fractions" },
-          { id: "7-10", title: "Simple Interest", expression: "I = (P×R×T)/100", description: "Interest on principal.", explanation: "P=Principal, R=Rate, T=Time.", category: "Finance" }
+          { id: "7-1-1", title: "Closure Property", expression: "a + b = Integer", description: "Addition of integers.", explanation: "The sum of any two integers is always an integer.", category: "Integers" },
+          { id: "7-1-2", title: "Commutative Property", expression: "a + b = b + a", description: "Order rule.", explanation: "Changing the order of addends does not change the sum.", category: "Integers" },
+          { id: "7-1-3", title: "Associative Property", expression: "(a+b)+c = a+(b+c)", description: "Grouping rule.", explanation: "The grouping of numbers doesn't change their sum.", category: "Integers" },
+          { id: "7-1-4", title: "Distributive Property", expression: "a(b+c) = ab + ac", description: "Expansion rule.", explanation: "Multiplying a sum by a number is the same as multiplying each addend.", category: "Integers" }
         ]
       },
       {
-        name: "Geometry & Measurement",
+        name: "Fractions & Decimals",
         formulas: [
-          { id: "7-11", title: "Area of Triangle", expression: "A = 1/2 × b × h", description: "Standard area.", explanation: "Half of base times perpendicular height.", category: "Geometry" },
-          { id: "7-12", title: "Area of Parallelogram", expression: "A = b × h", description: "Base times height.", explanation: "The vertical height is used.", category: "Geometry" },
-          { id: "7-13", title: "Circumference of Circle", expression: "C = 2πr", description: "Circle perimeter.", explanation: "π is approx 3.14.", category: "Geometry" },
-          { id: "7-14", title: "Area of Circle", expression: "A = πr²", description: "Circle surface.", explanation: "Radius squared multiplied by Pi.", category: "Geometry" },
-          { id: "7-15", title: "Triangle Angle Sum", expression: "Σ∠ = 180°", description: "Interior sum.", explanation: "All interior angles of a triangle add to 180°.", category: "Geometry" },
-          { id: "7-16", title: "Pythagoras Property", expression: "a² + b² = c²", description: "Right triangle rule.", explanation: "Valid only for right-angled triangles.", category: "Geometry" }
+          { id: "7-2-1", title: "Product of Fractions", expression: "Num₁×Num₂ / Den₁×Den₂", description: "Multiplication rule.", explanation: "Multiply numerators and denominators separately.", category: "Fractions" },
+          { id: "7-2-2", title: "Reciprocal", expression: "a/b → b/a", description: "Inversion.", explanation: "The product of a fraction and its reciprocal is 1.", category: "Fractions" }
+        ]
+      },
+      {
+        name: "Perimeter & Area",
+        formulas: [
+          { id: "7-3-1", title: "Area of Square", expression: "side × side", description: "Surface space.", explanation: "Square of the length of its side.", category: "Geometry" },
+          { id: "7-3-2", title: "Area of Triangle", expression: "1/2 × base × height", description: "Triangle surface.", explanation: "Half the product of base and perpendicular height.", category: "Geometry" },
+          { id: "7-3-3", title: "Circumference", expression: "2πr", description: "Circle perimeter.", explanation: "The distance around a circle.", category: "Geometry" }
         ]
       }
     ]
@@ -40,28 +38,25 @@ export const CLASSES_DATA: ClassData[] = [
       {
         name: "Algebraic Identities",
         formulas: [
-          { id: "8-1", title: "Identity I", expression: "(a+b)² = a² + 2ab + b²", description: "Square of sum.", explanation: "Fundamental binomial expansion.", category: "Algebra" },
-          { id: "8-2", title: "Identity II", expression: "(a-b)² = a² - 2ab + b²", description: "Square of difference.", explanation: "Middle term is negative.", category: "Algebra" },
-          { id: "8-3", title: "Identity III", expression: "a² - b² = (a+b)(a-b)", description: "Difference of squares.", explanation: "Crucial for factorization.", category: "Algebra" },
-          { id: "8-4", title: "Identity IV", expression: "(x+a)(x+b) = x²+(a+b)x+ab", description: "Common term product.", explanation: "Expansion of binomials with common x.", category: "Algebra" }
-        ]
-      },
-      {
-        name: "Exponents & Powers",
-        formulas: [
-          { id: "8-5", title: "Product Law", expression: "aᵐ × aⁿ = aᵐ⁺ⁿ", description: "Same base add.", explanation: "Multiplying terms with same base.", category: "Exponents" },
-          { id: "8-6", title: "Quotient Law", expression: "aᵐ / aⁿ = aᵐ⁻ⁿ", description: "Same base sub.", explanation: "Dividing terms with same base.", category: "Exponents" },
-          { id: "8-7", title: "Power of Power", expression: "(aᵐ)ⁿ = aᵐⁿ", description: "Exponent multiplication.", explanation: "Raising power to another power.", category: "Exponents" },
-          { id: "8-8", title: "Negative Exponent", expression: "a⁻ⁿ = 1/aⁿ", description: "Reciprocal rule.", explanation: "Denotes denominator value.", category: "Exponents" }
+          { id: "8-1-1", title: "Identity I", expression: "(a+b)² = a² + 2ab + b²", description: "Square of sum.", explanation: "Standard expansion for binomial addition.", category: "Algebra" },
+          { id: "8-1-2", title: "Identity II", expression: "(a-b)² = a² - 2ab + b²", description: "Square of diff.", explanation: "Standard expansion for binomial subtraction.", category: "Algebra" },
+          { id: "8-1-3", title: "Identity III", expression: "a² - b² = (a+b)(a-b)", description: "Diff of squares.", explanation: "Factorization identity for quadratic terms.", category: "Algebra" },
+          { id: "8-1-4", title: "Identity IV", expression: "(x+a)(x+b) = x²+(a+b)x+ab", description: "Product rule.", explanation: "Common expansion for linear binomials.", category: "Algebra" }
         ]
       },
       {
         name: "Mensuration",
         formulas: [
-          { id: "8-9", title: "TSA of Cuboid", expression: "TSA = 2(lb + bh + hl)", description: "Total Area.", explanation: "Sum of all 6 faces.", category: "Mensuration" },
-          { id: "8-10", title: "Volume of Cuboid", expression: "V = l × b × h", description: "Capacity.", explanation: "Product of dimensions.", category: "Mensuration" },
-          { id: "8-11", title: "Volume of Cylinder", expression: "V = πr²h", description: "Cylinder capacity.", explanation: "Base area times height.", category: "Mensuration" },
-          { id: "8-12", title: "CSA of Cylinder", expression: "2πrh", description: "Curved side.", explanation: "Area without top/bottom bases.", category: "Mensuration" }
+          { id: "8-2-1", title: "Area of Trapezium", expression: "1/2(a+b)h", description: "Parallel side area.", explanation: "a and b are parallel sides, h is height.", category: "Geometry" },
+          { id: "8-2-2", title: "Total Surface Area (Cuboid)", expression: "2(lb + bh + hl)", description: "Box surface.", explanation: "Sum of areas of all 6 faces.", category: "Geometry" },
+          { id: "8-2-3", title: "Volume of Cylinder", expression: "πr²h", description: "Cylindrical capacity.", explanation: "Space occupied by a cylinder.", category: "Geometry" }
+        ]
+      },
+      {
+        name: "Exponents & Powers",
+        formulas: [
+          { id: "8-3-1", title: "Negative Exponent", expression: "a⁻ᵐ = 1/aᵐ", description: "Reciprocal power.", explanation: "Base moved to denominator.", category: "Algebra" },
+          { id: "8-3-2", title: "Zero Exponent", expression: "a⁰ = 1", description: "Unit rule.", explanation: "Any non-zero number to power 0 is 1.", category: "Algebra" }
         ]
       }
     ]
@@ -71,32 +66,25 @@ export const CLASSES_DATA: ClassData[] = [
     label: "Class 9",
     topics: [
       {
-        name: "Polynomials (Master Collection)",
+        name: "Polynomials",
         formulas: [
-          { id: "9-1", title: "Standard Form", expression: "p(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₀", description: "General definition.", explanation: "A polynomial is an expression with non-negative integer powers.", category: "Polynomials" },
-          { id: "9-2", title: "Remainder Theorem", expression: "p(a) = R", description: "Remainder of p(x)/(x-a).", explanation: "When p(x) is divided by (x-a), the remainder is p(a).", category: "Polynomials" },
-          { id: "9-3", title: "Factor Theorem", expression: "p(a) = 0 ⇒ (x-a) is factor", description: "Testing for factors.", explanation: "If substituting a into p(x) gives 0, then (x-a) is a factor.", category: "Polynomials" },
-          { id: "9-4", title: "Identity I: (x+y)²", expression: "x² + 2xy + y²", description: "Square of sum.", explanation: "Expanding square of two terms.", category: "Identities" },
-          { id: "9-5", title: "Identity II: (x-y)²", expression: "x² - 2xy + y²", description: "Square of difference.", explanation: "Note the negative middle term.", category: "Identities" },
-          { id: "9-6", title: "Identity III: x²-y²", expression: "(x+y)(x-y)", description: "Difference of squares.", explanation: "Crucial for simplifying expressions.", category: "Identities" },
-          { id: "9-7", title: "Identity IV: (x+a)(x+b)", expression: "x² + (a+b)x + ab", description: "Product of binomials.", explanation: "General expansion for linear terms.", category: "Identities" },
-          { id: "9-8", title: "Identity V: (x+y+z)²", expression: "x²+y²+z²+2xy+2yz+2zx", description: "Square of trinomial.", explanation: "Expanding square of three terms.", category: "Identities" },
-          { id: "9-9", title: "Identity VI: (x+y)³", expression: "x³ + y³ + 3xy(x+y)", description: "Cube of sum.", explanation: "Also written as x³+3x²y+3xy²+y³.", category: "Identities" },
-          { id: "9-10", title: "Identity VII: (x-y)³", expression: "x³ - y³ - 3xy(x-y)", description: "Cube of difference.", explanation: "Also written as x³-3x²y+3xy²-y³.", category: "Identities" },
-          { id: "9-11", title: "Identity VIII: x³+y³+z³-3xyz", expression: "(x+y+z)(x²+y²+z²-xy-yz-zx)", description: "Long cubic identity.", explanation: "A specialized identity for advanced factorization.", category: "Identities" },
-          { id: "9-12", title: "Conditional Identity", expression: "If x+y+z=0, x³+y³+z³=3xyz", description: "Special cubic case.", explanation: "Derived from Identity VIII when x+y+z is zero.", category: "Identities" },
-          { id: "9-13", title: "Sum of Cubes", expression: "x³+y³ = (x+y)(x²-xy+y²)", description: "Factoring sum of cubes.", explanation: "Useful for cubic factoring.", category: "Identities" },
-          { id: "9-14", title: "Difference of Cubes", expression: "x³-y³ = (x-y)(x²+xy+y²)", description: "Factoring difference of cubes.", explanation: "Useful for cubic factoring.", category: "Identities" },
-          { id: "9-15", title: "Degree of Polynomial", expression: "Max(Exponent)", description: "Highest power.", explanation: "The degree is the highest exponent of the variable in p(x).", category: "Polynomials" }
+          { id: "9-1-1", title: "Trinomial Square", expression: "(a+b+c)² = a²+b²+c²+2ab+2bc+2ca", description: "3-term expansion.", explanation: "Square of a sum of three terms.", category: "Algebra" },
+          { id: "9-1-2", title: "Cube of Sum", expression: "(a+b)³ = a³+b³+3ab(a+b)", description: "Binomial cube.", explanation: "Standard cubic expansion.", category: "Algebra" },
+          { id: "9-1-3", title: "Sum of Cubes", expression: "a³+b³ = (a+b)(a²-ab+b²)", description: "Cubic factoring.", explanation: "Factoring sum of two cubes.", category: "Algebra" }
         ]
       },
       {
-        name: "Geometry & Coordinate",
+        name: "Heron's Formula",
         formulas: [
-          { id: "9-16", title: "Heron's Formula", expression: "√[s(s-a)(s-b)(s-c)]", description: "Area of triangle.", explanation: "s is semi-perimeter (a+b+c)/2.", category: "Geometry" },
-          { id: "9-17", title: "CSA of Cone", expression: "πrl", description: "Curved surface area.", explanation: "l is slant height √(r²+h²).", category: "Mensuration" },
-          { id: "9-18", title: "Volume of Sphere", expression: "4/3 πr³", description: "Full sphere volume.", explanation: "The capacity of a spherical object.", category: "Mensuration" },
-          { id: "9-19", title: "Distance Formula", expression: "√[(x₂-x₁)² + (y₂-y₁)²]", description: "Length between points.", explanation: "Pythagorean theorem applied to coordinates.", category: "Coordinate" }
+          { id: "9-2-1", title: "Semi-perimeter (s)", expression: "(a+b+c)/2", description: "Half perimeter.", explanation: "Required for Heron's calculation.", category: "Geometry" },
+          { id: "9-2-2", title: "Heron's Formula", expression: "√[s(s-a)(s-b)(s-c)]", description: "Area of triangle.", explanation: "Area using only side lengths.", category: "Geometry" }
+        ]
+      },
+      {
+        name: "Surface Areas & Volumes",
+        formulas: [
+          { id: "9-3-1", title: "Surface Area (Sphere)", expression: "4πr²", description: "Sphere exterior.", explanation: "Total area of a spherical surface.", category: "Geometry" },
+          { id: "9-3-2", title: "Volume of Cone", expression: "1/3 πr²h", description: "Cone capacity.", explanation: "One-third volume of a cylinder.", category: "Geometry" }
         ]
       }
     ]
@@ -106,20 +94,39 @@ export const CLASSES_DATA: ClassData[] = [
     label: "Class 10",
     topics: [
       {
-        name: "Algebra & AP",
+        name: "Real Numbers",
         formulas: [
-          { id: "10-1", title: "Quadratic Formula", expression: "x = [-b ± √(b²-4ac)] / 2a", description: "Roots of ax²+bx+c=0.", explanation: "Finding root values of quadratic.", category: "Algebra" },
-          { id: "10-2", title: "Discriminant", expression: "D = b² - 4ac", description: "Nature of roots.", explanation: "D>0 (Real), D=0 (Equal), D<0 (Imag).", category: "Algebra" },
-          { id: "10-3", title: "nth term of AP", expression: "aₙ = a + (n-1)d", description: "Specific sequence term.", explanation: "a=start, d=diff.", category: "AP" },
-          { id: "10-4", title: "Sum of n terms AP", expression: "Sₙ = n/2 [2a + (n-1)d]", description: "AP total sum.", explanation: "Calculating total of a series.", category: "AP" }
+          { id: "10-1-1", title: "Euclid's Lemma", expression: "a = bq + r", description: "Division algorithm.", explanation: "0 ≤ r < b.", category: "Number Systems" },
+          { id: "10-1-2", title: "HCF & LCM Relation", expression: "HCF × LCM = a × b", description: "Product theorem.", explanation: "Applies to two positive integers.", category: "Number Systems" }
+        ]
+      },
+      {
+        name: "Quadratic Equations",
+        formulas: [
+          { id: "10-2-1", title: "Quadratic Formula", expression: "x = [-b ± √(b² - 4ac)] / 2a", description: "Root finder.", explanation: "Standard solution for ax²+bx+c=0.", category: "Algebra" },
+          { id: "10-2-2", title: "Discriminant (D)", expression: "D = b² - 4ac", description: "Nature of roots.", explanation: "D>0: 2 real; D=0: 1 real; D<0: imaginary.", category: "Algebra" }
+        ]
+      },
+      {
+        name: "Arithmetic Progressions",
+        formulas: [
+          { id: "10-3-1", title: "nth term (aₙ)", expression: "a + (n-1)d", description: "Sequence value.", explanation: "a=first term, d=diff.", category: "Algebra" },
+          { id: "10-3-2", title: "Sum of n terms (Sₙ)", expression: "n/2 [2a + (n-1)d]", description: "Total sum.", explanation: "Also Sₙ = n/2(a + l).", category: "Algebra" }
         ]
       },
       {
         name: "Trigonometry",
         formulas: [
-          { id: "10-5", title: "Identity I", expression: "sin²θ + cos²θ = 1", description: "Fundamental rule.", explanation: "Universal relation.", category: "Trig" },
-          { id: "10-6", title: "Identity II", expression: "1 + tan²θ = sec²θ", description: "Tangent relation.", explanation: "Derived from Identity I.", category: "Trig" },
-          { id: "10-7", title: "Identity III", expression: "1 + cot²θ = cosec²θ", description: "Cot relation.", explanation: "Derived from Identity I.", category: "Trig" }
+          { id: "10-4-1", title: "Identity I", expression: "sin²θ + cos²θ = 1", description: "Fundamental rule.", explanation: "Universal trig identity.", category: "Trigonometry" },
+          { id: "10-4-2", title: "Identity II", expression: "1 + tan²θ = sec²θ", description: "Sec-Tan rule.", explanation: "Related to squares of ratios.", category: "Trigonometry" },
+          { id: "10-4-3", title: "Complementary Angles", expression: "sin(90-θ) = cosθ", description: "Co-function rule.", explanation: "Sine and Cosine are complementary.", category: "Trigonometry" }
+        ]
+      },
+      {
+        name: "Statistics & Probability",
+        formulas: [
+          { id: "10-5-1", title: "Empirical Formula", expression: "3 Median = Mode + 2 Mean", description: "Central tendency.", explanation: "Relates the three measures.", category: "Statistics" },
+          { id: "10-5-2", title: "Probability P(E)", expression: "n(E) / n(S)", description: "Likelihood.", explanation: "Favorable outcomes / Total outcomes.", category: "Probability" }
         ]
       }
     ]
@@ -129,18 +136,39 @@ export const CLASSES_DATA: ClassData[] = [
     label: "Class 11",
     topics: [
       {
-        name: "Compound Trigonometry",
+        name: "Sets & Relations",
         formulas: [
-          { id: "11-1", title: "sin(A±B)", expression: "sinAcosB ± cosAsinB", description: "Sum/Diff sin.", explanation: "Compound angles.", category: "Trig" },
-          { id: "11-2", title: "cos(A±B)", expression: "cosAcosB ∓ sinAsinB", description: "Sum/Diff cos.", explanation: "Compound angles.", category: "Trig" },
-          { id: "11-3", title: "sin 2θ", expression: "2sinθcosθ", description: "Double angle.", explanation: "Reduces angle by half.", category: "Trig" }
+          { id: "11-1-1", title: "Union n(A∪B)", expression: "n(A)+n(B)-n(A∩B)", description: "Combined size.", explanation: "Standard addition theorem.", category: "Algebra" },
+          { id: "11-1-2", title: "De Morgan's Laws", expression: "(A∪B)' = A'∩B'", description: "Complements.", explanation: "Intersection/Union transformations.", category: "Algebra" }
+        ]
+      },
+      {
+        name: "Trigonometric Functions",
+        formulas: [
+          { id: "11-2-1", title: "sin(A+B)", expression: "sinAcosB + cosAsinB", description: "Addition formula.", explanation: "Sine of a sum.", category: "Trigonometry" },
+          { id: "11-2-2", title: "cos 2θ", expression: "cos²θ - sin²θ", description: "Double angle.", explanation: "Also 2cos²θ-1 or 1-2sin²θ.", category: "Trigonometry" },
+          { id: "11-2-3", title: "General Solution (sin)", expression: "θ = nπ + (-1)ⁿα", description: "Periodic solutions.", explanation: "General angles for sine.", category: "Trigonometry" }
+        ]
+      },
+      {
+        name: "Sequences & Series",
+        formulas: [
+          { id: "11-3-1", title: "GP nth term", expression: "arⁿ⁻¹", description: "Geometric term.", explanation: "a=first, r=ratio.", category: "Algebra" },
+          { id: "11-3-2", title: "Infinite GP Sum", expression: "a / (1-r)", description: "Infinite sum.", explanation: "Valid for |r| < 1.", category: "Algebra" }
+        ]
+      },
+      {
+        name: "Straight Lines",
+        formulas: [
+          { id: "11-4-1", title: "Slope (m)", expression: "(y₂-y₁) / (x₂-x₁)", description: "Gradient.", explanation: "Rise over run.", category: "Geometry" },
+          { id: "11-4-2", title: "Slope-Intercept", expression: "y = mx + c", description: "Standard form.", explanation: "m is slope, c is y-intercept.", category: "Geometry" }
         ]
       },
       {
         name: "Calculus",
         formulas: [
-          { id: "11-4", title: "Power Rule", expression: "d/dx(xⁿ) = nxⁿ⁻¹", description: "Differentiation.", explanation: "Foundational calculus rule.", category: "Calculus" },
-          { id: "11-5", title: "Trig Limit", expression: "lim(x→0) sinx/x = 1", description: "Standard limit.", explanation: "Essential for trig derivatives.", category: "Calculus" }
+          { id: "11-5-1", title: "Limit sinx/x", expression: "lim(x→0) = 1", description: "Fundamental limit.", explanation: "Central limit theorem in trig.", category: "Calculus" },
+          { id: "11-5-2", title: "Power Rule (Diff)", expression: "nxⁿ⁻¹", description: "Basic derivative.", explanation: "d/dx of x to the power n.", category: "Calculus" }
         ]
       }
     ]
@@ -150,19 +178,40 @@ export const CLASSES_DATA: ClassData[] = [
     label: "Class 12",
     topics: [
       {
-        name: "Advanced Calculus",
+        name: "Matrices & Det",
         formulas: [
-          { id: "12-1", title: "Product Rule", expression: "(uv)' = u'v + uv'", description: "Differentiation.", explanation: "For two functions multiplied.", category: "Calculus" },
-          { id: "12-2", title: "Chain Rule", expression: "dy/dx = (dy/du)·(du/dx)", description: "Composite diff.", explanation: "Functions within functions.", category: "Calculus" },
-          { id: "12-3", title: "Integration by Parts", expression: "∫u dv = uv - ∫v du", description: "Integral rule.", explanation: "Reverse of product rule.", category: "Calculus" },
-          { id: "12-4", title: "Fundamental Theorem", expression: "∫ₐᵇ f(x)dx = F(b)-F(a)", description: "Definite integral.", explanation: "Finding area under curve.", category: "Calculus" }
+          { id: "12-1-1", title: "Inverse A⁻¹", expression: "1/|A| × adj(A)", description: "Matrix inversion.", explanation: "Needs non-singular matrix.", category: "Algebra" },
+          { id: "12-1-2", title: "|AB| Property", expression: "|A| × |B|", description: "Det product.", explanation: "Det of product = Product of dets.", category: "Algebra" }
         ]
       },
       {
-        name: "Vectors & Prob",
+        name: "Calculus: Differentiation",
         formulas: [
-          { id: "12-5", title: "Dot Product", expression: "a·b = |a||b|cosθ", description: "Scalar multiplication.", explanation: "Result is a scalar.", category: "Vectors" },
-          { id: "12-6", title: "Bayes' Theorem", expression: "P(A|B) = P(B|A)P(A)/P(B)", description: "Probability.", explanation: "Conditional prob relation.", category: "Probability" }
+          { id: "12-2-1", title: "Chain Rule", expression: "dy/dx = (dy/du)·(du/dx)", description: "Nested derivative.", explanation: "For composite functions.", category: "Calculus" },
+          { id: "12-2-2", title: "Logarithmic Diff", expression: "y' = y[ln(y)]'", description: "Complex powers.", explanation: "Using logs to simplify power derivatives.", category: "Calculus" }
+        ]
+      },
+      {
+        name: "Calculus: Integration",
+        formulas: [
+          { id: "12-3-1", title: "By Parts", expression: "∫uv = u∫v - ∫(u'∫v)", description: "Product rule.", explanation: "Integration of two functions.", category: "Calculus" },
+          { id: "12-3-2", title: "Substitution", expression: "∫f(g(x))g'(x) = ∫f(u)du", description: "Variable change.", explanation: "Simplify complex integrals.", category: "Calculus" },
+          { id: "12-3-3", title: "Basic: 1/x", expression: "∫(1/x)dx = ln|x| + C", description: "Log integral.", explanation: "Fundamental integral form.", category: "Calculus" }
+        ]
+      },
+      {
+        name: "Vectors & 3D",
+        formulas: [
+          { id: "12-4-1", title: "Dot Product", expression: "a·b = |a||b|cosθ", description: "Scalar product.", explanation: "Used for projections and angles.", category: "Geometry" },
+          { id: "12-4-2", title: "Cross Product", expression: "a×b = |a||b|sinθ n̂", description: "Vector product.", explanation: "Perpendicular result vector.", category: "Geometry" },
+          { id: "12-4-3", title: "Shortest Distance", expression: "|(a₂-a₁)·(b₁×b₂)| / |b₁×b₂|", description: "Skew lines.", explanation: "Distance between two non-intersecting spatial lines.", category: "Geometry" }
+        ]
+      },
+      {
+        name: "Probability",
+        formulas: [
+          { id: "12-5-1", title: "Conditional P(A|B)", expression: "P(A∩B) / P(B)", description: "Dependency.", explanation: "Prob of A given B occurred.", category: "Probability" },
+          { id: "12-5-2", title: "Bayes' Theorem", expression: "P(A|B) = [P(B|A)P(A)] / P(B)", description: "Inverse prob.", explanation: "Updating beliefs with evidence.", category: "Probability" }
         ]
       }
     ]
